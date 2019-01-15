@@ -74,7 +74,7 @@ Example: `(setq flycheck-vera-parameters (list (cons \"max-line-length\" \"80\")
 (flycheck-define-checker c/c++-vera++
   "A flycheck checker for C/C++ files using vera++."
   :command ("vera++"
-            (option-list "-R " flycheck-vera-rules concat)
+            (option-list "--rule" flycheck-vera-rules flycheck-vera-prepend)
             (option-list "-P " flycheck-vera-parameters flycheck-vera-prepend)
             source-original)
   :error-patterns
