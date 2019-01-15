@@ -66,16 +66,12 @@ Example: `(setq flycheck-vera-parameters (list (cons \"max-line-length\" \"80\")
   :safe #'listp
   :package-version '(flycheck . "32"))
 
-(defun flycheck-vera-prepend (option item)
-  "Prepend the OPTION to the ITEM value."
-  (format "%s%s=%s" option (car item) (cdr item)))
-
 ;;;###autoload
 (flycheck-define-checker c/c++-vera++
   "A flycheck checker for C/C++ files using vera++."
   :command ("vera++"
-            (option-list "--rule" flycheck-vera-rules flycheck-vera-prepend)
-            (option-list "-P " flycheck-vera-parameters flycheck-vera-prepend)
+            (option-list "--rule=" flycheck-vera-rules concat)
+            (option-list "--parameter=" flycheck-vera-parameters flycheck-vera-prepend)
             source-original)
   :error-patterns
   ((warning line-start (file-name) ":" line ":" (message) line-end))
